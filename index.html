@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VGER-ARQ-001 // ARCHIVO DE MISIÓN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SCANLINE GLOBAL -->
+  <div class="scanline"></div>
+
+  <!-- ====== INTRO: SECUENCIA DE LANZAMIENTO ====== -->
+  <div id="intro-cohete" class="intro-cohete">
+
+    <div class="cohete-scene">
+      <div class="cohete-body" id="cohete">
+        <svg class="cohete-svg" viewBox="0 0 80 240" xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="cohete-llama-glow" cx="40" cy="198" rx="24" ry="36" fill="#ff6b35" opacity="0.25"/>
+          <ellipse class="cohete-llama" cx="40" cy="196" rx="12" ry="28" fill="#ff6b35" opacity="0.8"/>
+          <ellipse class="cohete-llama-inner" cx="40" cy="190" rx="6" ry="18" fill="#ffb830" opacity="0.7"/>
+          <ellipse class="cohete-llama-core" cx="40" cy="188" rx="3" ry="10" fill="#fff" opacity="0.5"/>
+          <rect x="28" y="55" width="24" height="130" rx="2" fill="url(#rocket-body)"/>
+          <defs>
+            <linearGradient id="rocket-body" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4a5060"/>
+              <stop offset="35%" stop-color="#8a8fa0"/>
+              <stop offset="65%" stop-color="#a0a5b5"/>
+              <stop offset="100%" stop-color="#4a5060"/>
+            </linearGradient>
+          </defs>
+          <circle cx="40" cy="85" r="6" fill="#0a0c10" stroke="#39ff6b" stroke-width="1"/>
+          <circle cx="40" cy="85" r="3" fill="#39ff6b" opacity="0.6"/>
+          <polygon points="28,155 14,188 28,172" fill="#6b7280"/>
+          <polygon points="52,155 66,188 52,172" fill="#6b7280"/>
+          <polygon points="40,20 28,55 52,55" fill="#c9a227" opacity="0.9"/>
+          <rect x="28" y="110" width="24" height="1" fill="#39ff6b" opacity="0.3"/>
+          <rect x="28" y="130" width="24" height="1" fill="#39ff6b" opacity="0.3"/>
+          <rect x="28" y="150" width="24" height="1" fill="#39ff6b" opacity="0.2"/>
+        </svg>
+      </div>
+
+    </div>
+    <div class="intro-grid"></div>
+  </div>
+
+  <!-- ====== PANTALLA: DISCO CENTRADO ====== -->
+  <div id="pantalla-disco" class="pantalla-disco oculto">
+    <div id="stars-container" aria-hidden="true"></div>
+
+    <!-- Nebulosa de fondo -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+
+    <!-- Galaxias de fondo -->
+    <div class="galaxia galaxia-1">
+      <div class="galaxia-nucleo"></div>
+      <div class="galaxia-brazo galaxia-brazo-1"></div>
+      <div class="galaxia-brazo galaxia-brazo-2"></div>
+    </div>
+    <div class="galaxia galaxia-2">
+      <div class="galaxia-nucleo"></div>
+      <div class="galaxia-brazo galaxia-brazo-1"></div>
+      <div class="galaxia-brazo galaxia-brazo-2"></div>
+    </div>
+
+    <!-- Galaxias espirales -->
+    <div class="galaxia-espiral galaxia-espiral-1"></div>
+    <div class="galaxia-espiral galaxia-espiral-2"></div>
+
+    <!-- Agujeros negros -->
+    <div class="agujero-negro agujero-negro-1"></div>
+    <div class="agujero-negro agujero-negro-2"></div>
+
+    <!-- HUDs decorativos -->
+    <div class="hud-superior">
+      <div class="hud-left">
+        <span class="mission-id">VGER-ARQ-001</span>
+        <span class="status-live">EN LÍNEA</span>
+      </div>
+      <div class="hud-right">
+        <span class="hud-freq">FREQ: 1420.405 MHz</span>
+        <span class="hud-separator">|</span>
+        <span id="hud-coords">RA 17h 45m 40.0s</span>
+      </div>
+    </div>
+
+    <div class="hud-izquierdo">
+      <div class="hud-bar">
+        <div class="hud-bar-fill" id="signal-bar"></div>
+      </div>
+      <div class="hud-status-text" id="decode-status">EN ESPERA</div>
+    </div>
+
+    <div class="hud-derecho">
+      <div class="hud-coord-val" id="hud-dec">-29° 00' 28.1"</div>
+      <div class="hud-data-block">
+        <span class="hud-val" id="hud-trk">00/04</span>
+      </div>
+      <div class="hud-data-block">
+        <span class="hud-val" id="hud-bpm">---</span>
+      </div>
+    </div>
+
+    <div class="hud-inferior">
+      <span id="hud-time">00:00:00.000</span>
+      <span class="hud-separator">|</span>
+      <span id="hud-latency">4.2ms</span>
+    </div>
+
+    <!-- Disco -->
+    <div class="disco-escena">
+      <div class="disco-wrapper" id="disco-wrapper">
+        <div class="disco-ring-outer"></div>
+        <div class="disco-ring-mid"></div>
+        <div class="disco" id="disco-principal"></div>
+        <div class="disco-glow"></div>
+        <div class="disco-particles" id="disco-particles"></div>
+      </div>
+      <p class="disco-instruccion" id="disco-instruccion">TOCA EL DISCO PARA CONTINUAR</p>
+      <div class="disco-click-counter">
+        <span id="click-count-display">0</span><span class="click-max">/7</span>
+      </div>
+    </div>
+
+    <div class="deco-corner deco-corner-tl"></div>
+    <div class="deco-corner deco-corner-tr"></div>
+    <div class="deco-corner deco-corner-bl"></div>
+    <div class="deco-corner deco-corner-br"></div>
+  </div>
+
+  <!-- ====== PANTALLA FINAL ====== -->
+  <div id="pantalla-final" class="pantalla-final oculto">
+    <div id="stars-container-2" aria-hidden="true"></div>
+
+    <!-- Nebulosa de fondo -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+
+    <!-- Galaxias de fondo -->
+    <div class="galaxia galaxia-1">
+      <div class="galaxia-nucleo"></div>
+      <div class="galaxia-brazo galaxia-brazo-1"></div>
+      <div class="galaxia-brazo galaxia-brazo-2"></div>
+    </div>
+    <div class="galaxia galaxia-2">
+      <div class="galaxia-nucleo"></div>
+      <div class="galaxia-brazo galaxia-brazo-1"></div>
+      <div class="galaxia-brazo galaxia-brazo-2"></div>
+    </div>
+
+    <!-- Galaxias espirales -->
+    <div class="galaxia-espiral galaxia-espiral-1"></div>
+    <div class="galaxia-espiral galaxia-espiral-2"></div>
+
+    <!-- Agujeros negros -->
+    <div class="agujero-negro agujero-negro-1"></div>
+    <div class="agujero-negro agujero-negro-2"></div>
+
+    <div class="hud-superior">
+      <div class="hud-left">
+        <span class="mission-id">VGER-ARQ-001</span>
+        <span class="status-live">DECOFRADO</span>
+      </div>
+      <div>TRANSMISIÓN COMPLETA — CONTENIDO EXTRAÍDO</div>
+    </div>
+
+    <!-- Decoración superior -->
+    <div class="final-deco-top">
+      <span class="final-deco-dash"></span>
+      <span class="final-deco-label mono">ARCHIVO EXTRAÍDO DE LA SEÑAL</span>
+      <span class="final-deco-dash"></span>
+    </div>
+
+    <div class="final-layout">
+      <div class="final-columna">
+        <p class="final-label mono">[IMAGEN — DATOS VISUALES]</p>
+        <div class="final-imagen">
+          <img src="assets/img/foto-recuerdo-01.jpg" alt="Recuerdo" class="final-img">
+          <div class="final-img-overlay"></div>
+          <div class="final-img-corner final-img-corner-tl"></div>
+          <div class="final-img-corner final-img-corner-tr"></div>
+          <div class="final-img-corner final-img-corner-bl"></div>
+          <div class="final-img-corner final-img-corner-br"></div>
+        </div>
+        <p class="final-caption mono">TODO: [descripción o fecha]</p>
+      </div>
+      <div class="final-columna">
+        <p class="final-label mono">[MENSAJE — DATOS DE ORIGEN]</p>
+        <div class="final-mensaje">
+          <div class="final-mensaje-border"></div>
+          <p>TODO: [Escribe tu mensaje aquí — el contenido más directo y personal.]</p>
+          <p>TODO: [Segundo párrafo — continuidad o despedida.]</p>
+        </div>
+        <div class="final-firma">
+          <p>TODO: [tu firma]</p>
+          <p class="mono">TODO: [fecha]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decoración inferior -->
+    <div class="final-deco-bottom">
+      <div class="final-deco-coords mono">
+        <span>ORIGEN: TODO: [coordenadas]</span>
+        <span class="hud-separator">|</span>
+        <span>DESTINO: INFINITO</span>
+        <span class="hud-separator">|</span>
+        <span>DISTANCIA: ∞</span>
+      </div>
+    </div>
+
+    <div class="deco-corner deco-corner-tl"></div>
+    <div class="deco-corner deco-corner-tr"></div>
+    <div class="deco-corner deco-corner-bl"></div>
+    <div class="deco-corner deco-corner-br"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="voyager-disco.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

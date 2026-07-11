@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#e8e8e8"/>
+  <!-- Diagrama estilo Voyager -->
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#333" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#333" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="100" fill="none" stroke="#333" stroke-width="0.5"/>
+  <circle cx="200" cy="200" r="60" fill="none" stroke="#333" stroke-width="0.5"/>
+  <!-- Líneas de referencia -->
+  <line x1="200" y1="20" x2="200" y2="380" stroke="#333" stroke-width="0.3"/>
+  <line x1="20" y1="200" x2="380" y2="200" stroke="#333" stroke-width="0.3"/>
+  <line x1="60" y1="60" x2="340" y2="340" stroke="#333" stroke-width="0.2"/>
+  <line x1="340" y1="60" x2="60" y2="340" stroke="#333" stroke-width="0.2"/>
+  <!-- Puntos de datos -->
+  <circle cx="200" cy="20" r="4" fill="#d4af37"/>
+  <circle cx="380" cy="200" r="4" fill="#d4af37"/>
+  <circle cx="200" cy="380" r="4" fill="#d4af37"/>
+  <circle cx="20" cy="200" r="4" fill="#d4af37"/>
+  <!-- Texto técnico -->
+  <text x="200" y="15" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">ORIGEN TEMPORAL</text>
+  <text x="395" y="200" font-family="monospace" font-size="9" fill="#555" text-anchor="end" transform="rotate(90 395 200)">COORDENADA Y</text>
+  <text x="200" y="395" font-family="monospace" font-size="9" fill="#555" text-anchor="middle">DESTINO: INFINITO</text>
+  <text x="5" y="200" font-family="monospace" font-size="9" fill="#555" text-anchor="start" transform="rotate(-90 5 200)">COORDENADA X</text>
+  <!-- Datos internos -->
+  <text x="200" y="160" font-family="monospace" font-size="7" fill="#888" text-anchor="middle">TRACK 01-05 ENCODED</text>
+  <text x="200" y="245" font-family="monospace" font-size="7" fill="#888" text-anchor="middle">GOLDEN RECORD v1.0</text>
+</svg>

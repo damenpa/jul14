@@ -1,0 +1,29 @@
+En un futuro cercano, un equipo de investigadores recibe una señal 
+de origen desconocido proveniente de las profundidades del espacio. 
+
+La transmisión, a primera vista, parece un patrón de ruido estático sin sentido, 
+pero los investigadores sospechan que oculta un mensaje codificado que no han 
+logrado identificar.
+
+Durante el análisis de la señal en su laboratorio de radio, 
+el equipo detecta que el archivo recibido no es aleatorio: presenta estructuras 
+repetitivas que podrían camuflar información. Comienzan a preguntarse si 
+se trata de una advertencia, un mensaje de auxilio, o incluso un mensaje de ¿Amor?.
+
+La cadena que interceptaron es la siguiente:
+
+69 108 32 109 101 110 115 97 106 101 32 115 101 32 101 110 99 117 101 110 116 114 97 32 101 110 58
+117 103 103 99 102 58 47 47 116 118 103 117 104 111 46 112 98 122 47 113 110 122 114 97 99 110 47 119 104 121 49 52 46 116 118 103
+
+Con una nota sospechosa en español (por más raro que parezca):
+
+La dirección aún esta errada:
+El secreto es podrido,
+solo será descubierto en lengua anglosajona.
+Le seguirá un tiempo, muchas medidas hay pero solo 
+la que lleva cuenta lo entenderá.
+Alea iacta est, quien ha cruzado el Rubicón
+lo hubiera escondido igual.
+
+Como miembro distinguido del grupo de investigadores, tu tarea es desencriptar el mensaje
+y desvelar los misterios que esconde.
