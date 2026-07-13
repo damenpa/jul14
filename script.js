@@ -1,15 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
-/* ======================================== */
-/* UTILS                                    */
-/* ======================================== */
 function rand(min, max) { return Math.random() * (max - min) + min; }
 function randInt(min, max) { return Math.floor(rand(min, max)); }
 function pick(arr) { return arr[randInt(0, arr.length)]; }
 
-/* ======================================== */
-/* INTRO: SECUENCIA DE LANZAMIENTO         */
-/* ======================================== */
 function initCohete() {
   const intro = document.getElementById("intro-cohete");
   const cohete = document.getElementById("cohete");
@@ -19,7 +13,7 @@ function initCohete() {
   const llamaCore = cohete.querySelector(".cohete-llama-core");
   const llamaGlow = cohete.querySelector(".cohete-llama-glow");
 
-  // Inicializar estrellas del intro
+  
   initEspacio("stars-intro");
 
   const tl = gsap.timeline({
@@ -28,48 +22,48 @@ function initCohete() {
     }
   });
 
-  // Estrellas y decoraciones de fondo aparecen
+  
   tl.from("#stars-intro .star", { opacity: 0, duration: 0.5, stagger: { amount: 0.8, from: "random" } }, 0);
   tl.from(".intro-cohete .nebula", { opacity: 0, scale: 0.8, duration: 1.2, stagger: 0.15, ease: "power2.out" }, 0);
   tl.from(".intro-cohete .galaxia", { opacity: 0, scale: 0, rotation: -90, duration: 1.0, stagger: 0.1, ease: "power2.out" }, 0.2);
   tl.from(".intro-cohete .galaxia-espiral", { opacity: 0, scale: 0, duration: 1.0, stagger: 0.1, ease: "power2.out" }, 0.3);
   tl.from(".intro-cohete .agujero-negro", { opacity: 0, scale: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.5)" }, 0.4);
 
-  // Grid fade in
+  
   tl.fromTo(".intro-grid", { opacity: 0 }, { opacity: 0.12, duration: 0.8 }, 0);
 
-  // Cohete aparece con scale
+  
   tl.from(cohete, { scale: 0.3, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 0.3);
 
-  // Llama parpadea y late
+  
   tl.to([llama, llamaInner, llamaCore, llamaGlow], {
     scaleY: 1.8, scaleX: 1.3, duration: 0.12,
     repeat: 10, yoyo: true, ease: "steps(1)",
   }, 0.9);
 
-  // Glow intenso de la llama
+  
   tl.to([llama, llamaGlow], {
     filter: "drop-shadow(0 0 30px #ff6b35) drop-shadow(0 0 60px #ff3b00)",
     duration: 0.4, repeat: 5, yoyo: true,
   }, 0.9);
 
-  // Decoraciones se intensifican antes del lanzamiento
+  
   tl.to(".intro-cohete .nebula", {
     opacity: 0.08, scale: 1.2, duration: 0.6, stagger: 0.05,
   }, 1.5);
 
-  // Cohete sube con screen shake fuerte
+  
   tl.to(cohete, {
     y: -900, duration: 1.0, ease: "power3.in",
     onStart: () => {
-      // Screen shake agresivo
+      
       gsap.to(document.body, {
         x: () => rand(-6, 6), y: () => rand(-5, 5),
         duration: 0.03, repeat: 30, yoyo: true,
         ease: "none",
         onComplete: () => gsap.set(document.body, { x: 0, y: 0 }),
       });
-      // Flash de fondo
+      
       gsap.to(intro, {
         backgroundColor: "#1a1020",
         duration: 0.08, repeat: 6, yoyo: true,
@@ -79,16 +73,16 @@ function initCohete() {
     },
   }, 2.1);
 
-  // Decoraciones y grid desaparecen
+  
   tl.to([".intro-cohete .nebula", ".intro-cohete .galaxia", ".intro-cohete .galaxia-espiral", ".intro-cohete .agujero-negro", "#stars-intro"], {
     opacity: 0, duration: 0.4, stagger: 0.03,
   }, "-=0.8");
   tl.to(".intro-grid", { opacity: 0, duration: 0.3 }, "-=0.6");
 
-  // Fade out de la intro
+  
   tl.to(intro, { opacity: 0, duration: 0.3, ease: "none" }, "-=0.2");
 
-  // Mostrar pantalla disco
+  
   tl.call(() => {
     pantalla.classList.remove("oculto");
     intro.style.display = "none";
@@ -97,40 +91,40 @@ function initCohete() {
     initHUDS();
   });
 
-  // Entrada del disco
+  
   tl.from("#disco-principal", {
     scale: 0, opacity: 0, rotation: -180,
     duration: 1.0, ease: "back.out(1.4)",
   });
 
-  // Anillos entran
+  
   tl.from([".disco-ring-outer", ".disco-ring-mid"], {
     scale: 0, opacity: 0, duration: 0.7,
     stagger: 0.12, ease: "power2.out",
   }, "-=0.5");
 
-  // Glow
+  
   tl.from(".disco-glow", { opacity: 0, scale: 0.5, duration: 0.5 }, "-=0.3");
 
-  // Galaxias y nebulas aparecen
+  
   tl.from([".galaxia", ".galaxia-espiral", ".agujero-negro"], {
     scale: 0, opacity: 0, duration: 0.8,
     stagger: 0.08, ease: "power2.out",
   }, "-=0.4");
 
-  // HUDs
+  
   tl.from(".hud-superior", { y: -40, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.3");
   tl.from(".hud-inferior", { y: 40, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.3");
   tl.from(".hud-izquierdo", { x: -40, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.2");
   tl.from(".hud-derecho", { x: 40, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.3");
 
-  // Instrucción
+  
   tl.from("#disco-instruccion", { opacity: 0, y: 10, duration: 0.3 });
 
-  // Deco corners
+  
   tl.from(".deco-corner", { scale: 0, opacity: 0, duration: 0.3, stagger: 0.05 }, "-=0.3");
 
-  // Hacer flotar el disco
+  
   tl.call(() => {
     gsap.to("#disco-wrapper", {
       y: -8, duration: 2.5, repeat: -1, yoyo: true, ease: "sine.inOut",
@@ -141,14 +135,11 @@ function initCohete() {
   });
 }
 
-/* ======================================== */
-/* Espacio: estrellas + eventos            */
-/* ======================================== */
 function initEspacio(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Estrellas
+  
   for (let i = 0; i < 120; i++) {
     const star = document.createElement("div");
     star.classList.add("star");
@@ -167,7 +158,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Asteroides
+  
   for (let i = 0; i < 5; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-asteroide");
@@ -181,7 +172,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Señales verdes
+  
   for (let i = 0; i < 3; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-senal");
@@ -195,7 +186,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Polvo
+  
   for (let i = 0; i < 8; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-polvo");
@@ -208,7 +199,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Cometas (estelas)
+  
   for (let i = 0; i < 3; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-cometa");
@@ -227,7 +218,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Cometas grandes (con cabeza brillante)
+  
   for (let i = 0; i < 2; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-cometa-grande");
@@ -246,7 +237,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // OVNIs
+  
   for (let i = 0; i < 3; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-ovni");
@@ -268,7 +259,7 @@ function initEspacio(containerId) {
     });
   }
 
-  // Marcianitos (flotan estáticos)
+  
   for (let i = 0; i < 4; i++) {
     const el = document.createElement("div");
     el.classList.add("evento-espacial", "ev-marcianito");
@@ -286,9 +277,6 @@ function initEspacio(containerId) {
   }
 }
 
-/* ======================================== */
-/* HUDS: datos en tiempo real              */
-/* ======================================== */
 function initHUDS() {
   const signalBar = document.getElementById("signal-bar");
   const decodeStatus = document.getElementById("decode-status");
@@ -299,13 +287,13 @@ function initHUDS() {
   const hudTime = document.getElementById("hud-time");
   const hudLatency = document.getElementById("hud-latency");
 
-  // Signal bar fluctúa
+  
   gsap.to(signalBar, {
     width: () => rand(60, 95) + "%", duration: 2,
     repeat: -1, yoyo: true, ease: "sine.inOut",
   });
 
-  // Coordenadas cambian
+  
   setInterval(() => {
     const h = randInt(0, 24);
     const m = randInt(0, 60);
@@ -320,17 +308,17 @@ function initHUDS() {
     hudDec.textContent = `${deg}° ${min}' ${sec}.1"`;
   }, 4000);
 
-  // Latency fluctúa
+  
   setInterval(() => {
     hudLatency.textContent = `${rand(1, 8).toFixed(1)}ms`;
   }, 2000);
 
-  // BPM
+  
   setInterval(() => {
     hudBpm.textContent = randInt(60, 140);
   }, 2500);
 
-  // Reloj
+  
   setInterval(() => {
     const now = new Date();
     const h = String(now.getHours()).padStart(2, "0");
@@ -340,7 +328,7 @@ function initHUDS() {
     hudTime.textContent = `${h}:${m}:${s}.${ms}`;
   }, 50);
 
-  // Decode status
+  
   const statuses = ["EN ESPERA", "ADQUISICIÓN", "BLOQUEADO", "DECOFRADO", "COMPLETADO", "ERROR", "REINICIO"];
   setInterval(() => {
     decodeStatus.textContent = pick(statuses);
@@ -348,9 +336,6 @@ function initHUDS() {
   }, 3000);
 }
 
-/* ======================================== */
-/* Disco interactivo + transición           */
-/* ======================================== */
 let discoTween = null;
 let clickCount = 0;
 let transitioning = false;
@@ -376,29 +361,29 @@ function initDisco() {
 
   drawVoyagerDisc("disco-principal");
 
-  // Rotación lenta
+  
   discoTween = gsap.to(disco, {
     rotation: 360, repeat: -1, ease: "none", duration: 30,
   });
 
-  // Crear partículas alrededor del disco
+  
   createDiscParticles();
 
-  // Click en el disco
+  
   wrapper.addEventListener("click", () => {
     if (transitioning) return;
     clickCount++;
     counterDisplay.textContent = clickCount;
 
-    // === LOCURA EN CADA CLICK ===
+    
 
-    // 1. Pulso del disco
+    
     gsap.fromTo(wrapper,
       { scale: 0.92 },
       { scale: 1, duration: 0.3, ease: "elastic.out(1, 0.5)" }
     );
 
-    // 2. Flash neon
+    
     const flash = document.createElement("div");
     flash.style.cssText = `
       position: absolute; inset: -20px; border-radius: 50%;
@@ -411,17 +396,17 @@ function initDisco() {
       { opacity: 0, scale: 1.5, duration: 0.5, ease: "power2.out", onComplete: () => flash.remove() }
     );
 
-    // 3. Screen shake
+    
     gsap.to(document.body, {
       x: () => rand(-4, 4), y: () => rand(-3, 3),
       duration: 0.04, repeat: 6, yoyo: true, ease: "none",
       onComplete: () => gsap.set(document.body, { x: 0, y: 0 }),
     });
 
-    // 4. Expulsar partículas
+    
     emitParticles(wrapper);
 
-    // 5. Rotación extra
+    
     gsap.to(discoTween, {
       timeScale: 3 + clickCount, duration: 0.3, ease: "power2.out",
       onComplete: () => {
@@ -431,26 +416,26 @@ function initDisco() {
       },
     });
 
-    // 6. Glow se intensifica
+    
     gsap.to(".disco-glow", {
       scale: 1.2 + clickCount * 0.05, opacity: 1,
       duration: 0.2, yoyo: true, repeat: 1,
     });
 
-    // 7. Anillos reaccionan
+    
     gsap.to(".disco-ring-outer", {
       borderColor: "var(--green)", duration: 0.2,
       yoyo: true, repeat: 1,
     });
 
-    // 8. HUD reaction
+    
     const decodeStatus = document.getElementById("decode-status");
     if (decodeStatus) {
       decodeStatus.textContent = `CLICK #${clickCount}`;
       decodeStatus.style.color = "var(--green)";
     }
 
-    // 9. Mensaje
+    
     if (instruccion && clickCount < CLICKS_MAX) {
       instruccion.textContent = MENSAJES[clickCount - 1] || "...";
       gsap.fromTo(instruccion,
@@ -459,7 +444,7 @@ function initDisco() {
       );
     }
 
-    // 10. Transición al final
+    
     if (clickCount >= CLICKS_MAX) {
       transitioning = true;
       if (instruccion) {
@@ -474,9 +459,6 @@ function initDisco() {
   });
 }
 
-/* ======================================== */
-/* Partículas del disco                     */
-/* ======================================== */
 function createDiscParticles() {
   const container = document.getElementById("disco-particles");
   if (!container) return;
@@ -528,16 +510,13 @@ function emitParticles(wrapper) {
   }
 }
 
-/* ======================================== */
-/* Transición a pantalla final              */
-/* ======================================== */
 function transicionAPantallaFinal() {
   const pantallaDisco = document.getElementById("pantalla-disco");
   const pantallaFinal = document.getElementById("pantalla-final");
 
   gsap.to(discoTween, { timeScale: 0, duration: 0.5, ease: "power2.out" });
 
-  // Glitch effect antes de transicionar
+  
   const tl = gsap.timeline();
 
   tl.to(pantallaDisco, {
@@ -568,9 +547,6 @@ function transicionAPantallaFinal() {
   }, "-=0.3");
 }
 
-/* ======================================== */
-/* Inicialización                           */
-/* ======================================== */
 document.addEventListener("DOMContentLoaded", () => {
   initCohete();
 });

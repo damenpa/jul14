@@ -1,6 +1,4 @@
-/**
- * Voyager Golden Record — SVG procedural recreation (solo disco dorado, sin fondo)
- */
+
 function drawVoyagerDisc(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -18,7 +16,7 @@ function drawVoyagerDisc(containerId) {
 
   const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
 
-  // Gradiente dorado metálico
+  
   const grad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
   grad.setAttribute("id", "discGrad");
   grad.setAttribute("cx", "42%");
@@ -38,7 +36,7 @@ function drawVoyagerDisc(containerId) {
   });
   defs.appendChild(grad);
 
-  // Filtro textura metálica
+  
   const filter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
   filter.setAttribute("id", "metalTexture");
   filter.setAttribute("x", "0%");
@@ -68,7 +66,7 @@ function drawVoyagerDisc(containerId) {
   filter.appendChild(blend);
   defs.appendChild(filter);
 
-  // Brillo especular
+  
   const specGrad = document.createElementNS("http://www.w3.org/2000/svg", "radialGradient");
   specGrad.setAttribute("id", "specular");
   specGrad.setAttribute("cx", "65%");
@@ -87,7 +85,7 @@ function drawVoyagerDisc(containerId) {
 
   svg.appendChild(defs);
 
-  // Disco dorado (sin fondo negro)
+  
   const disc = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   disc.setAttribute("cx", cx);
   disc.setAttribute("cy", cy);
@@ -96,7 +94,7 @@ function drawVoyagerDisc(containerId) {
   disc.setAttribute("filter", "url(#metalTexture)");
   svg.appendChild(disc);
 
-  // Brillo especular
+  
   const specular = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   specular.setAttribute("cx", cx + 60);
   specular.setAttribute("cy", cy - 80);
@@ -104,14 +102,14 @@ function drawVoyagerDisc(containerId) {
   specular.setAttribute("fill", "url(#specular)");
   svg.appendChild(specular);
 
-  // Grupo de grabados
+  
   const engravings = document.createElementNS("http://www.w3.org/2000/svg", "g");
   engravings.setAttribute("stroke", "#f5eeda");
   engravings.setAttribute("fill", "none");
   engravings.setAttribute("stroke-width", "1.2");
   engravings.setAttribute("opacity", "0.88");
 
-  // Agujero central
+  
   const hole = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   hole.setAttribute("cx", cx - 5);
   hole.setAttribute("cy", cy + 5);
@@ -121,9 +119,9 @@ function drawVoyagerDisc(containerId) {
   hole.setAttribute("stroke-width", "0.8");
   svg.appendChild(hole);
 
-  // =========================================
-  // DIAGRAMA DE REPRODUCCIÓN (arriba-izq)
-  // =========================================
+  
+  
+  
   const pbCx = 210, pbCy = 250, pbR = 85;
   for (let i = 0; i < 60; i++) {
     const a = (i / 60) * Math.PI * 2;
@@ -156,7 +154,7 @@ function drawVoyagerDisc(containerId) {
   pbCenterRing.setAttribute("stroke-width", "0.8");
   engravings.appendChild(pbCenterRing);
 
-  // Brazo/aguja
+  
   const armAngle = -Math.PI / 4;
   const armX1 = pbCx + Math.cos(armAngle) * (pbR + 25);
   const armY1 = pbCy + Math.sin(armAngle) * (pbR + 25);
@@ -176,9 +174,9 @@ function drawVoyagerDisc(containerId) {
   cart.setAttribute("height", 8);
   engravings.appendChild(cart);
 
-  // =========================================
-  // FORMA DE ONDA (arriba-derecha)
-  // =========================================
+  
+  
+  
   const waveX0 = 480, waveY0 = 180, waveW = 200;
   let spiralPath = `M ${waveX0} ${waveY0}`;
   for (let i = 0; i < 80; i++) {
@@ -207,7 +205,7 @@ function drawVoyagerDisc(containerId) {
   wave.setAttribute("stroke-width", "1.2");
   engravings.appendChild(wave);
 
-  // Código de barras binario
+  
   const barY = waveY0 + 35;
   for (let i = 0; i < 30; i++) {
     const x = waveX0 + 50 + i * 6.5;
@@ -221,9 +219,9 @@ function drawVoyagerDisc(containerId) {
     engravings.appendChild(bar);
   }
 
-  // =========================================
-  // DIENTES DE SIERRA (medio-derecha)
-  // =========================================
+  
+  
+  
   const sawX0 = 520, sawY0 = 340, sawW = 160, sawH = 35;
   for (let s = 0; s < 3; s++) {
     let sawPath = `M ${sawX0} ${sawY0 + s * 45}`;
@@ -253,9 +251,9 @@ function drawVoyagerDisc(containerId) {
     }
   }
 
-  // =========================================
-  // IMAGEN DE CALIBRACIÓN 1 (barras)
-  // =========================================
+  
+  
+  
   const cal1X = 510, cal1Y = 470, cal1W = 100, cal1H = 60;
   const cal1Rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   cal1Rect.setAttribute("x", cal1X);
@@ -273,9 +271,9 @@ function drawVoyagerDisc(containerId) {
     engravings.appendChild(line);
   }
 
-  // =========================================
-  // IMAGEN DE CALIBRACIÓN 2 (círculo)
-  // =========================================
+  
+  
+  
   const cal2X = 510, cal2Y = 550, cal2W = 100, cal2H = 60;
   const cal2Rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   cal2Rect.setAttribute("x", cal2X);
@@ -289,9 +287,9 @@ function drawVoyagerDisc(containerId) {
   cal2Circle.setAttribute("r", 22);
   engravings.appendChild(cal2Circle);
 
-  // =========================================
-  // MAPA DE PÚLSARES (abajo-izquierda)
-  // =========================================
+  
+  
+  
   const pulsCx = 260, pulsCy = 650;
   const refLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
   refLine.setAttribute("x1", pulsCx - 120);
@@ -339,7 +337,7 @@ function drawVoyagerDisc(containerId) {
   pulsCenter.setAttribute("stroke", "none");
   engravings.appendChild(pulsCenter);
 
-  // Diagrama binario de tiempo
+  
   const binY = pulsCy - 70;
   for (let i = 0; i < 20; i++) {
     const x = pulsCx - 60 + i * 6;
@@ -353,9 +351,9 @@ function drawVoyagerDisc(containerId) {
     engravings.appendChild(bar);
   }
 
-  // =========================================
-  // REFERENCIA DE HIDRÓGENO (abajo-derecha)
-  // =========================================
+  
+  
+  
   const hCx = 580, hCy = 680, hR = 14;
   const hLeft = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   hLeft.setAttribute("cx", hCx - 35);
@@ -363,7 +361,7 @@ function drawVoyagerDisc(containerId) {
   hLeft.setAttribute("r", hR);
   engravings.appendChild(hLeft);
 
-  // Flecha abajo
+  
   const arrowDown = document.createElementNS("http://www.w3.org/2000/svg", "line");
   arrowDown.setAttribute("x1", hCx - 35);
   arrowDown.setAttribute("y1", hCy - 5);
@@ -385,7 +383,7 @@ function drawVoyagerDisc(containerId) {
   hRight.setAttribute("r", hR);
   engravings.appendChild(hRight);
 
-  // Flecha arriba
+  
   const arrowUp = document.createElementNS("http://www.w3.org/2000/svg", "line");
   arrowUp.setAttribute("x1", hCx + 35);
   arrowUp.setAttribute("y1", hCy + 5);
@@ -418,7 +416,7 @@ function drawVoyagerDisc(containerId) {
     engravings.appendChild(mark);
   }
 
-  // Anillos del disco
+  
   const outerRing = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   outerRing.setAttribute("cx", cx);
   outerRing.setAttribute("cy", cy);
