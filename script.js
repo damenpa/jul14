@@ -19,29 +19,44 @@ function initCohete() {
   const llamaCore = cohete.querySelector(".cohete-llama-core");
   const llamaGlow = cohete.querySelector(".cohete-llama-glow");
 
+  // Inicializar estrellas del intro
+  initEspacio("stars-intro");
+
   const tl = gsap.timeline({
     onComplete: () => {
       intro.style.display = "none";
     }
   });
 
+  // Estrellas y decoraciones de fondo aparecen
+  tl.from("#stars-intro .star", { opacity: 0, duration: 0.5, stagger: { amount: 0.8, from: "random" } }, 0);
+  tl.from(".intro-cohete .nebula", { opacity: 0, scale: 0.8, duration: 1.2, stagger: 0.15, ease: "power2.out" }, 0);
+  tl.from(".intro-cohete .galaxia", { opacity: 0, scale: 0, rotation: -90, duration: 1.0, stagger: 0.1, ease: "power2.out" }, 0.2);
+  tl.from(".intro-cohete .galaxia-espiral", { opacity: 0, scale: 0, duration: 1.0, stagger: 0.1, ease: "power2.out" }, 0.3);
+  tl.from(".intro-cohete .agujero-negro", { opacity: 0, scale: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.5)" }, 0.4);
+
   // Grid fade in
   tl.fromTo(".intro-grid", { opacity: 0 }, { opacity: 0.12, duration: 0.8 }, 0);
 
   // Cohete aparece con scale
-  tl.from(cohete, { scale: 0.3, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 0);
+  tl.from(cohete, { scale: 0.3, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, 0.3);
 
   // Llama parpadea y late
   tl.to([llama, llamaInner, llamaCore, llamaGlow], {
     scaleY: 1.8, scaleX: 1.3, duration: 0.12,
     repeat: 10, yoyo: true, ease: "steps(1)",
-  }, 0.6);
+  }, 0.9);
 
   // Glow intenso de la llama
   tl.to([llama, llamaGlow], {
     filter: "drop-shadow(0 0 30px #ff6b35) drop-shadow(0 0 60px #ff3b00)",
     duration: 0.4, repeat: 5, yoyo: true,
-  }, 0.6);
+  }, 0.9);
+
+  // Decoraciones se intensifican antes del lanzamiento
+  tl.to(".intro-cohete .nebula", {
+    opacity: 0.08, scale: 1.2, duration: 0.6, stagger: 0.05,
+  }, 1.5);
 
   // Cohete sube con screen shake fuerte
   tl.to(cohete, {
@@ -62,10 +77,13 @@ function initCohete() {
         onComplete: () => gsap.set(intro, { backgroundColor: "#050608" }),
       });
     },
-  }, 1.8);
+  }, 2.1);
 
-  // Grid desaparece
-  tl.to(".intro-grid", { opacity: 0, duration: 0.3 }, "-=0.8");
+  // Decoraciones y grid desaparecen
+  tl.to([".intro-cohete .nebula", ".intro-cohete .galaxia", ".intro-cohete .galaxia-espiral", ".intro-cohete .agujero-negro", "#stars-intro"], {
+    opacity: 0, duration: 0.4, stagger: 0.03,
+  }, "-=0.8");
+  tl.to(".intro-grid", { opacity: 0, duration: 0.3 }, "-=0.6");
 
   // Fade out de la intro
   tl.to(intro, { opacity: 0, duration: 0.3, ease: "none" }, "-=0.2");
